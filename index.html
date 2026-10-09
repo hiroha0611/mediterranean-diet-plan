@@ -22,11 +22,6 @@
   header{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:14px;border-bottom:3px solid var(--ink);padding-bottom:14px}
   header h1{margin:0;font-size:26px;letter-spacing:1px}
   header .sub{color:var(--muted);font-size:13px;margin-top:4px}
-  .ver-badge{
-    display:inline-block;margin-top:10px;background:var(--accent);color:#fff;
-    padding:5px 14px;border-radius:999px;font-size:12.5px;font-weight:800;
-    box-shadow:0 1px 0 rgba(0,0,0,.08);
-  }
   .btn-print{
     appearance:none;border:0;background:var(--olive);color:#fff;font-size:13px;font-weight:700;
     padding:9px 18px;border-radius:8px;cursor:pointer;font-family:inherit;
@@ -60,6 +55,9 @@
   .tag.power{background:var(--olive-bg);color:var(--olive)}
   .tag.cardio{background:var(--teal-bg);color:var(--teal)}
   .tag.rest{background:var(--sand-bg);color:var(--sand)}
+  .tag.hc{background:#f7e6dc;color:#b8562f}
+  .tag.mc{background:var(--teal-bg);color:var(--teal)}
+  .tag.lc{background:#ecedde;color:#6b7452}
   .day-body{display:grid;grid-template-columns:165px 1fr}
   .timeline{padding:13px 16px;border-right:1px dashed var(--line);background:#fcf9f2}
   .tl{display:flex;gap:8px;padding:5.5px 0;font-size:12.5px;border-bottom:1px dotted #eee5d2}
@@ -107,7 +105,6 @@
     header{gap:10px;padding-bottom:11px}
     header h1{font-size:20px;letter-spacing:.5px}
     header .sub{font-size:12px}
-    .ver-badge{display:block;margin-top:8px;font-size:11px;padding:4px 10px;line-height:1.45}
     .btn-print{font-size:12px;padding:8px 14px}
 
     .chips{
@@ -201,23 +198,28 @@
   <header>
     <div>
       <h1>地中海饮食 · 增肌减脂周历（中文循环版）</h1>
-      <div class="sub">23岁 · 178cm · 75kg → 目标 70kg ｜ 12–16 周 ｜ 3 天餐单循环 ×2 ＋ 力量 4 次/周 ＋ 有氧 2 次/周</div>
-      <div class="ver-badge">v2 已更新 · 晚餐正餐 = 18:00–19:00 · 睡前 21:00 仅为可选轻食</div>
+      <div class="sub">23岁 · 178cm · 75kg → 目标 70kg ｜ 12–16 周 ｜ 午晚餐固定双菜 ＋ 碳水三档循环 ＋ 力量 4 次/周 ＋ 有氧 2 次/周</div>
     </div>
     <button class="btn-print no-print" onclick="window.print()">打印 / 存为 PDF</button>
   </header>
 
   <div class="chips no-print">
-    <span class="chip">每日热量 <b>≈2400–2500 kcal</b></span>
-    <span class="chip">每日蛋白质 <b>160–175 g</b></span>
+    <span class="chip">日型热量 <b>低碳 2006 → 高碳 2745 kcal</b></span>
+    <span class="chip">每日蛋白质 <b>156–183 g</b></span>
+    <span class="chip">碳水三档 <b>348 / 270 / 205 g</b></span>
     <span class="chip">喝水 <b>2.5–3 L</b></span>
     <span class="chip">睡眠 <b>23:30 → 07:45</b></span>
-    <span class="chip">每 3 天采购一次</span>
+    <span class="chip">每周采购一次主料</span>
   </div>
   <div class="legend no-print">
     <span><i style="background:var(--olive)"></i>力量日</span>
     <span><i style="background:var(--teal)"></i>有氧日</span>
     <span><i style="background:var(--sand)"></i>休息/备餐日</span>
+  </div>
+  <div class="legend no-print">
+    <span><i style="background:#b8562f"></i>高碳日</span>
+    <span><i style="background:var(--teal)"></i>中碳日</span>
+    <span><i style="background:#7d7255"></i>低碳日</span>
   </div>
   <nav class="nav no-print">
     <a href="#mon">周一</a><a href="#tue">周二</a><a href="#wed">周三</a><a href="#thu">周四</a>
@@ -231,11 +233,11 @@
     <div class="win off"><b>🌙 睡前窗 21:00–22:00</b><span class="use">不安排训练：洗漱放松；仅作应急替补</span></div>
   </div>
 
-  <!-- ================= 周一：餐单A + 下肢A ================= -->
+  <!-- ================= 周一：高碳日 + 下肢A ================= -->
   <section class="day" id="mon">
     <div class="day-head">
-      <span class="date">周一</span><span class="cn">餐单 A · 力量日下肢A</span>
-      <span class="tag power">力量</span><span class="kcal">≈2450 kcal ｜ 蛋白 170g</span>
+      <span class="date">周一</span><span class="cn">力量 · 下肢A</span>
+      <span class="tag hc">高碳日</span><span class="tag power">力量</span><span class="kcal">≈2745 kcal ｜ 蛋白 183g ｜ 碳水 348g</span>
     </div>
     <div class="day-body">
       <div class="timeline">
@@ -253,16 +255,22 @@
       </div>
       <div class="cards">
         <div class="card"><h4>🥣 早餐<span class="tm">08:00</span></h4>
-          <p>燕麦粥（燕麦片 60g ＋ 牛奶 250ml）＋ 水煮蛋 2 个 ＋ 苹果 1 个 ＋ 核桃 10g</p></div>
+          <p>燕麦粥（燕麦片 60g ＋ 牛奶 250ml）＋ 水煮蛋 2 个 ＋ 苹果 1 个 ＋ 核桃 10g</p>
+          <span class="fmt">高碳日：燕麦 60g ＋ 苹果 1 个（中碳日燕麦 45g ＋ 半个苹果）</span></div>
         <div class="card"><h4>🍌 练前加餐<span class="tm">11:30</span></h4>
           <p>香蕉 1 根 ＋ 无糖酸奶 100g</p></div>
-        <div class="card"><h4>🍗 午餐<span class="tm">13:10</span></h4>
-          <p>少油煎鸡胸肉 240g ＋ 杂粮饭（大米＋糙米＋小米，生米 80g）＋ 白灼西兰花 200g ＋ 清炒胡萝卜丝 100g（橄榄油 8g）</p></div>
+        <div class="card"><h4>🍋 午餐 · 地中海柠檬烤鸡<span class="tm">13:10</span></h4>
+          <p>去骨鸡腿肉 200g｜希腊酸奶 80g（腌料＋蘸酱）｜糙米 80g（约煮成 190g）｜西兰花 200g｜西葫芦 150g｜彩椒 100g｜西芹碎 30g｜柠檬 30g（约半个挤汁）｜特级初榨橄榄油 8g｜香料 6g（黑胡椒·牛至·洋葱粉·烟熏红椒粉·大蒜粉·干辣椒碎）</p>
+          <span class="fmt">生重计 ｜ ≈808 kcal ｜ 蛋白 61g ｜ 碳水 95g ｜ 脂肪 24g</span></div>
         <div class="card"><h4>🥛 下午加餐<span class="tm">16:30</span></h4>
           <p>蛋白粉 25g ＋ 牛奶 250ml ＋ 橙子 1 个</p>
           <span class="fmt">不喝蛋白粉：换成 2 个水煮蛋＋100g 酸奶</span></div>
-        <div class="card"><h4>🐟 晚餐<span class="tm">18:00–19:00</span></h4>
-          <p>清蒸鲈鱼 220g ＋ 蒸红薯 300g ＋ 蒜蓉菠菜 200g（橄榄油 5g）</p></div>
+        <div class="card"><h4>🥗 晚餐 · 地中海沙拉<span class="tm">18:00–19:00</span></h4>
+          <p>虾仁 200g｜土豆 220g（蒸熟）｜小番茄 150g｜西兰花 150g｜玉米粒 70g｜喷油 1.5g（约 5 下）｜芝麻撒料 8g｜罗勒海盐 适量</p>
+          <span class="fmt">生重计 ｜ ≈560 kcal ｜ 蛋白 54g ｜ 碳水 70g ｜ 脂肪 10g</span></div>
+        <div class="card"><h4>🥤 晚饭蔬果汁<span class="tm">随晚餐</span></h4>
+          <p>胡萝卜 100g ＋ 黄瓜 100g ＋ 羽衣甘蓝粉 5g ＋ 苹果汁 180ml，破壁机打匀，不滤渣</p>
+          <span class="fmt">≈156 kcal ｜ 碳水 36g</span></div>
         <div class="card"><h4>🌙 睡前轻食<span class="tm">21:00</span></h4>
           <p>牛奶 200ml 或 无糖酸奶 150g（可选，饿才吃）</p></div>
         <div class="card workout"><h4>🏋️ 力量 · 下肢A<span class="tm">12:00–13:00</span></h4>
@@ -280,11 +288,11 @@
     </div>
   </section>
 
-  <!-- ================= 周二：餐单B + 上肢A ================= -->
+  <!-- ================= 周二：中碳日 + 上肢A ================= -->
   <section class="day" id="tue">
     <div class="day-head">
-      <span class="date">周二</span><span class="cn">餐单 B · 力量日上肢A</span>
-      <span class="tag power">力量</span><span class="kcal">≈2430 kcal ｜ 蛋白 168g</span>
+      <span class="date">周二</span><span class="cn">力量 · 上肢A</span>
+      <span class="tag mc">中碳日</span><span class="tag power">力量</span><span class="kcal">≈2415 kcal ｜ 蛋白 181g ｜ 碳水 265g</span>
     </div>
     <div class="day-body">
       <div class="timeline">
@@ -302,16 +310,22 @@
       </div>
       <div class="cards">
         <div class="card"><h4>🌽 早餐<span class="tm">08:00</span></h4>
-          <p>蒸玉米 1 根（约 300g）＋ 煎蛋 2 个（橄榄油 4g）＋ 无糖豆浆 400ml ＋ 小番茄 100g</p></div>
+          <p>蒸玉米 200g ＋ 煎蛋 2 个（橄榄油 4g）＋ 无糖豆浆 400ml ＋ 小番茄 100g</p>
+          <span class="fmt">中碳日：玉米 200g（高碳日 300g / 低碳日 150g）</span></div>
         <div class="card"><h4>🍎 练前加餐<span class="tm">11:30</span></h4>
           <p>苹果 1 个 ＋ 杏仁 15g</p></div>
-        <div class="card"><h4>🥩 午餐<span class="tm">13:10</span></h4>
-          <p>青椒洋葱炒瘦牛肉 220g ＋ 米饭（生米 90g）＋ 凉拌黄瓜 150g（橄榄油 8g）</p></div>
+        <div class="card"><h4>🍋 午餐 · 地中海柠檬烤鸡<span class="tm">13:10</span></h4>
+          <p>去骨鸡腿肉 200g｜希腊酸奶 80g（腌料＋蘸酱）｜糙米 55g（约煮成 130g）｜西兰花 200g｜西葫芦 150g｜彩椒 100g｜西芹碎 30g｜柠檬 30g（约半个挤汁）｜特级初榨橄榄油 8g｜香料 6g（黑胡椒·牛至·洋葱粉·烟熏红椒粉·大蒜粉·干辣椒碎）</p>
+          <span class="fmt">生重计 ｜ ≈718 kcal ｜ 蛋白 59g ｜ 碳水 76g ｜ 脂肪 24g</span></div>
         <div class="card"><h4>🥛 下午加餐<span class="tm">16:30</span></h4>
           <p>蛋白粉 25g ＋ 牛奶 250ml ＋ 核桃 10g</p>
           <span class="fmt">不喝蛋白粉：换成 2 个水煮蛋＋100g 酸奶</span></div>
-        <div class="card"><h4>🍤 晚餐<span class="tm">18:00–19:00</span></h4>
-          <p>葱姜炒虾仁 200g ＋ 西葫芦炒木耳 200g ＋ 荞麦面/挂面（干 90g，橄榄油 8g）</p></div>
+        <div class="card"><h4>🥗 晚餐 · 地中海沙拉<span class="tm">18:00–19:00</span></h4>
+          <p>虾仁 200g｜土豆 170g（蒸熟）｜小番茄 150g｜西兰花 150g｜玉米粒 50g｜喷油 1.5g（约 5 下）｜芝麻撒料 8g｜罗勒海盐 适量</p>
+          <span class="fmt">生重计 ｜ ≈503 kcal ｜ 蛋白 52g ｜ 碳水 58g ｜ 脂肪 9g</span></div>
+        <div class="card"><h4>🥤 晚饭蔬果汁<span class="tm">随晚餐</span></h4>
+          <p>胡萝卜 100g ＋ 黄瓜 100g ＋ 羽衣甘蓝粉 5g ＋ 苹果汁 130ml，破壁机打匀，不滤渣</p>
+          <span class="fmt">≈133 kcal ｜ 碳水 30g</span></div>
         <div class="card"><h4>🌙 睡前轻食<span class="tm">21:00</span></h4>
           <p>牛奶 200ml 或 无糖酸奶 150g（可选）</p></div>
         <div class="card workout"><h4>🏋️ 力量 · 上肢A<span class="tm">12:00–13:00</span></h4>
@@ -330,11 +344,11 @@
     </div>
   </section>
 
-  <!-- ================= 周三：餐单C + 晨间有氧 ================= -->
+  <!-- ================= 周三：低碳日 + 晨间有氧 ================= -->
   <section class="day" id="wed">
     <div class="day-head">
-      <span class="date">周三</span><span class="cn">餐单 C · 晨间有氧＋核心</span>
-      <span class="tag cardio">有氧</span><span class="kcal">≈2420 kcal ｜ 蛋白 165g</span>
+      <span class="date">周三</span><span class="cn">有氧 · 核心</span>
+      <span class="tag lc">低碳日</span><span class="tag cardio">有氧</span><span class="kcal">≈2000 kcal ｜ 蛋白 156g ｜ 碳水 213g</span>
     </div>
     <div class="day-body">
       <div class="timeline">
@@ -351,13 +365,20 @@
       </div>
       <div class="cards">
         <div class="card"><h4>🥣 早餐（练后）<span class="tm">08:50</span></h4>
-          <p>小米粥（小米 45g）＋ 水煮蛋 2 个 ＋ 全麦馒头/花卷 1 个（约 70g）＋ 橙子 1 个 ＋ 杏仁 10g</p></div>
-        <div class="card"><h4>🍗 午餐<span class="tm">12:30</span></h4>
-          <p>香菇烧去皮鸡腿肉 250g ＋ 米饭（生米 75g）＋ 白灼菜心/上海青 250g（橄榄油 8g）</p></div>
+          <p>小米粥（小米 25g）＋ 水煮蛋 2 个 ＋ 全麦馒头 半个（约 50g）＋ 杏仁 10g</p>
+          <span class="fmt">低碳日：去掉橙子，主食减到 25g ＋ 50g</span></div>
+        <div class="card"><h4>🍋 午餐 · 地中海柠檬烤鸡<span class="tm">12:30</span></h4>
+          <p>去骨鸡腿肉 200g｜希腊酸奶 110g（腌料＋蘸酱）｜糙米 45g（约煮成 110g）｜西兰花 200g｜西葫芦 150g｜彩椒 100g｜西芹碎 30g｜柠檬 30g（约半个挤汁）｜特级初榨橄榄油 8g｜香料 6g（黑胡椒·牛至·洋葱粉·烟熏红椒粉·大蒜粉·干辣椒碎）</p>
+          <span class="fmt">生重计 ｜ ≈705 kcal ｜ 蛋白 61g ｜ 碳水 70g ｜ 脂肪 24g</span></div>
         <div class="card"><h4>🥛 下午加餐<span class="tm">16:30</span></h4>
-          <p>无糖酸奶 300g ＋ 苹果 1 个 ＋ 核桃 10g</p></div>
-        <div class="card"><h4>🥘 晚餐<span class="tm">18:00–19:00</span></h4>
-          <p>肉末烧豆腐（鸡胸肉末 100g ＋ 北豆腐 300g）＋ 蒸土豆 250g ＋ 清炒西兰花 150g（橄榄油 8g）</p></div>
+          <p>无糖酸奶 300g ＋ 核桃 10g</p>
+          <span class="fmt">低碳日：去掉苹果</span></div>
+        <div class="card"><h4>🥗 晚餐 · 地中海沙拉<span class="tm">18:00–19:00</span></h4>
+          <p>虾仁 240g｜土豆 150g（蒸熟）｜小番茄 150g｜西兰花 150g｜玉米粒 40g｜喷油 1.5g（约 5 下）｜芝麻撒料 8g｜罗勒海盐 适量</p>
+          <span class="fmt">生重计 ｜ ≈517 kcal ｜ 蛋白 59g ｜ 碳水 53g ｜ 脂肪 10g</span></div>
+        <div class="card"><h4>🥤 晚饭蔬果汁<span class="tm">随晚餐</span></h4>
+          <p>胡萝卜 100g ＋ 黄瓜 100g ＋ 羽衣甘蓝粉 5g ＋ 苹果汁 100ml，破壁机打匀，不滤渣</p>
+          <span class="fmt">≈120 kcal ｜ 碳水 27g</span></div>
         <div class="card"><h4>🌙 睡前轻食<span class="tm">21:00</span></h4>
           <p>牛奶 200ml 或 无糖酸奶 150g（可选）</p></div>
         <div class="card workout"><h4>🏃 晨间有氧 ＋ 核心<span class="tm">08:00–08:50</span></h4>
@@ -373,11 +394,11 @@
     </div>
   </section>
 
-  <!-- ================= 周四：餐单A + 下肢B ================= -->
+  <!-- ================= 周四：高碳日 + 下肢B ================= -->
   <section class="day" id="thu">
     <div class="day-head">
-      <span class="date">周四</span><span class="cn">餐单 A · 力量日下肢B</span>
-      <span class="tag power">力量</span><span class="kcal">≈2450 kcal ｜ 蛋白 170g</span>
+      <span class="date">周四</span><span class="cn">力量 · 下肢B</span>
+      <span class="tag hc">高碳日</span><span class="tag power">力量</span><span class="kcal">≈2745 kcal ｜ 蛋白 183g ｜ 碳水 348g</span>
     </div>
     <div class="day-body">
       <div class="timeline">
@@ -395,16 +416,22 @@
       </div>
       <div class="cards">
         <div class="card"><h4>🥣 早餐<span class="tm">08:00</span></h4>
-          <p>燕麦粥（燕麦片 60g ＋ 牛奶 250ml）＋ 水煮蛋 2 个 ＋ 苹果 1 个 ＋ 核桃 10g</p></div>
+          <p>燕麦粥（燕麦片 60g ＋ 牛奶 250ml）＋ 水煮蛋 2 个 ＋ 苹果 1 个 ＋ 核桃 10g</p>
+          <span class="fmt">高碳日：燕麦 60g ＋ 苹果 1 个（中碳日燕麦 45g ＋ 半个苹果）</span></div>
         <div class="card"><h4>🍌 练前加餐<span class="tm">11:30</span></h4>
           <p>香蕉 1 根 ＋ 无糖酸奶 100g</p></div>
-        <div class="card"><h4>🍗 午餐<span class="tm">13:10</span></h4>
-          <p>少油煎鸡胸肉 240g ＋ 杂粮饭（生米 80g）＋ 白灼西兰花 200g ＋ 清炒胡萝卜丝 100g（橄榄油 8g）</p></div>
+        <div class="card"><h4>🍋 午餐 · 地中海柠檬烤鸡<span class="tm">13:10</span></h4>
+          <p>去骨鸡腿肉 200g｜希腊酸奶 80g（腌料＋蘸酱）｜糙米 80g（约煮成 190g）｜西兰花 200g｜西葫芦 150g｜彩椒 100g｜西芹碎 30g｜柠檬 30g（约半个挤汁）｜特级初榨橄榄油 8g｜香料 6g（黑胡椒·牛至·洋葱粉·烟熏红椒粉·大蒜粉·干辣椒碎）</p>
+          <span class="fmt">生重计 ｜ ≈808 kcal ｜ 蛋白 61g ｜ 碳水 95g ｜ 脂肪 24g</span></div>
         <div class="card"><h4>🥛 下午加餐<span class="tm">16:30</span></h4>
           <p>蛋白粉 25g ＋ 牛奶 250ml ＋ 橙子 1 个</p>
           <span class="fmt">不喝蛋白粉：换成 2 个水煮蛋＋100g 酸奶</span></div>
-        <div class="card"><h4>🐟 晚餐<span class="tm">18:00–19:00</span></h4>
-          <p>清蒸鲈鱼 220g ＋ 蒸红薯 300g ＋ 蒜蓉菠菜 200g（橄榄油 5g）</p></div>
+        <div class="card"><h4>🥗 晚餐 · 地中海沙拉<span class="tm">18:00–19:00</span></h4>
+          <p>虾仁 200g｜土豆 220g（蒸熟）｜小番茄 150g｜西兰花 150g｜玉米粒 70g｜喷油 1.5g（约 5 下）｜芝麻撒料 8g｜罗勒海盐 适量</p>
+          <span class="fmt">生重计 ｜ ≈560 kcal ｜ 蛋白 54g ｜ 碳水 70g ｜ 脂肪 10g</span></div>
+        <div class="card"><h4>🥤 晚饭蔬果汁<span class="tm">随晚餐</span></h4>
+          <p>胡萝卜 100g ＋ 黄瓜 100g ＋ 羽衣甘蓝粉 5g ＋ 苹果汁 180ml，破壁机打匀，不滤渣</p>
+          <span class="fmt">≈156 kcal ｜ 碳水 36g</span></div>
         <div class="card"><h4>🌙 睡前轻食<span class="tm">21:00</span></h4>
           <p>牛奶 200ml 或 无糖酸奶 150g（可选）</p></div>
         <div class="card workout"><h4>🏋️ 力量 · 下肢B<span class="tm">12:00–13:00</span></h4>
@@ -422,11 +449,11 @@
     </div>
   </section>
 
-  <!-- ================= 周五：餐单B + 上肢B ================= -->
+  <!-- ================= 周五：中碳日 + 上肢B ================= -->
   <section class="day" id="fri">
     <div class="day-head">
-      <span class="date">周五</span><span class="cn">餐单 B · 力量日上肢B</span>
-      <span class="tag power">力量</span><span class="kcal">≈2430 kcal ｜ 蛋白 168g</span>
+      <span class="date">周五</span><span class="cn">力量 · 上肢B</span>
+      <span class="tag mc">中碳日</span><span class="tag power">力量</span><span class="kcal">≈2415 kcal ｜ 蛋白 181g ｜ 碳水 265g</span>
     </div>
     <div class="day-body">
       <div class="timeline">
@@ -444,16 +471,22 @@
       </div>
       <div class="cards">
         <div class="card"><h4>🌽 早餐<span class="tm">08:00</span></h4>
-          <p>蒸玉米 1 根（约 300g）＋ 煎蛋 2 个（橄榄油 4g）＋ 无糖豆浆 400ml ＋ 小番茄 100g</p></div>
+          <p>蒸玉米 200g ＋ 煎蛋 2 个（橄榄油 4g）＋ 无糖豆浆 400ml ＋ 小番茄 100g</p>
+          <span class="fmt">中碳日：玉米 200g（高碳日 300g / 低碳日 150g）</span></div>
         <div class="card"><h4>🍎 练前加餐<span class="tm">11:30</span></h4>
           <p>苹果 1 个 ＋ 杏仁 15g</p></div>
-        <div class="card"><h4>🥩 午餐<span class="tm">13:10</span></h4>
-          <p>青椒洋葱炒瘦牛肉 220g ＋ 米饭（生米 90g）＋ 凉拌黄瓜 150g（橄榄油 8g）</p></div>
+        <div class="card"><h4>🍋 午餐 · 地中海柠檬烤鸡<span class="tm">13:10</span></h4>
+          <p>去骨鸡腿肉 200g｜希腊酸奶 80g（腌料＋蘸酱）｜糙米 55g（约煮成 130g）｜西兰花 200g｜西葫芦 150g｜彩椒 100g｜西芹碎 30g｜柠檬 30g（约半个挤汁）｜特级初榨橄榄油 8g｜香料 6g（黑胡椒·牛至·洋葱粉·烟熏红椒粉·大蒜粉·干辣椒碎）</p>
+          <span class="fmt">生重计 ｜ ≈718 kcal ｜ 蛋白 59g ｜ 碳水 76g ｜ 脂肪 24g</span></div>
         <div class="card"><h4>🥛 下午加餐<span class="tm">16:30</span></h4>
           <p>蛋白粉 25g ＋ 牛奶 250ml ＋ 核桃 10g</p>
           <span class="fmt">不喝蛋白粉：换成 2 个水煮蛋＋100g 酸奶</span></div>
-        <div class="card"><h4>🍤 晚餐<span class="tm">18:00–19:00</span></h4>
-          <p>葱姜炒虾仁 200g ＋ 西葫芦炒木耳 200g ＋ 荞麦面/挂面（干 90g，橄榄油 8g）</p></div>
+        <div class="card"><h4>🥗 晚餐 · 地中海沙拉<span class="tm">18:00–19:00</span></h4>
+          <p>虾仁 200g｜土豆 170g（蒸熟）｜小番茄 150g｜西兰花 150g｜玉米粒 50g｜喷油 1.5g（约 5 下）｜芝麻撒料 8g｜罗勒海盐 适量</p>
+          <span class="fmt">生重计 ｜ ≈503 kcal ｜ 蛋白 52g ｜ 碳水 58g ｜ 脂肪 9g</span></div>
+        <div class="card"><h4>🥤 晚饭蔬果汁<span class="tm">随晚餐</span></h4>
+          <p>胡萝卜 100g ＋ 黄瓜 100g ＋ 羽衣甘蓝粉 5g ＋ 苹果汁 130ml，破壁机打匀，不滤渣</p>
+          <span class="fmt">≈133 kcal ｜ 碳水 30g</span></div>
         <div class="card"><h4>🌙 睡前轻食<span class="tm">21:00</span></h4>
           <p>牛奶 200ml 或 无糖酸奶 150g（可选）</p></div>
         <div class="card workout"><h4>🏋️ 力量 · 上肢B<span class="tm">12:00–13:00</span></h4>
@@ -472,11 +505,11 @@
     </div>
   </section>
 
-  <!-- ================= 周六：餐单C变体 + 晨间长有氧 ================= -->
+  <!-- ================= 周六：中碳日 + 晨间长有氧 ================= -->
   <section class="day" id="sat">
     <div class="day-head">
-      <span class="date">周六</span><span class="cn">餐单 C · 晨间长有氧日</span>
-      <span class="tag cardio">有氧</span><span class="kcal">≈2380 kcal ｜ 蛋白 168g</span>
+      <span class="date">周六</span><span class="cn">长有氧</span>
+      <span class="tag mc">中碳日</span><span class="tag cardio">有氧</span><span class="kcal">≈2239 kcal ｜ 蛋白 151g ｜ 碳水 279g</span>
     </div>
     <div class="day-body">
       <div class="timeline">
@@ -492,13 +525,20 @@
       </div>
       <div class="cards">
         <div class="card"><h4>🥣 早餐（练后）<span class="tm">09:00</span></h4>
-          <p>小米粥（小米 45g）＋ 水煮蛋 2 个 ＋ 全麦馒头/花卷 1 个（约 70g）＋ 橙子 1 个 ＋ 杏仁 10g</p></div>
-        <div class="card"><h4>🍗 午餐<span class="tm">12:30</span></h4>
-          <p>香菇烧去皮鸡腿肉 250g ＋ 米饭（生米 75g）＋ 白灼菜心/上海青 250g（橄榄油 8g）</p></div>
+          <p>小米粥（小米 35g）＋ 水煮蛋 2 个 ＋ 全麦馒头 1 个（约 70g）＋ 橙子 1 个 ＋ 杏仁 10g</p>
+          <span class="fmt">中碳日：小米 35g</span></div>
+        <div class="card"><h4>🍋 午餐 · 地中海柠檬烤鸡<span class="tm">12:30</span></h4>
+          <p>去骨鸡腿肉 200g｜希腊酸奶 80g（腌料＋蘸酱）｜糙米 55g（约煮成 130g）｜西兰花 200g｜西葫芦 150g｜彩椒 100g｜西芹碎 30g｜柠檬 30g（约半个挤汁）｜特级初榨橄榄油 8g｜香料 6g（黑胡椒·牛至·洋葱粉·烟熏红椒粉·大蒜粉·干辣椒碎）</p>
+          <span class="fmt">生重计 ｜ ≈718 kcal ｜ 蛋白 59g ｜ 碳水 76g ｜ 脂肪 24g</span></div>
         <div class="card"><h4>🥛 下午加餐<span class="tm">15:30</span></h4>
-          <p>无糖酸奶 300g ＋ 苹果 1 个 ＋ 核桃 10g</p></div>
-        <div class="card"><h4>🥘 晚餐<span class="tm">18:00</span></h4>
-          <p>肉末烧豆腐（鸡胸肉末 100g ＋ 北豆腐 300g）＋ 蒸土豆 300g ＋ 清炒西兰花 150g（橄榄油 8g）</p></div>
+          <p>无糖酸奶 300g ＋ 苹果 半个（约 100g）＋ 核桃 10g</p>
+          <span class="fmt">中碳日：苹果减半</span></div>
+        <div class="card"><h4>🥗 晚餐 · 地中海沙拉<span class="tm">18:00–19:00</span></h4>
+          <p>虾仁 200g｜土豆 170g（蒸熟）｜小番茄 150g｜西兰花 150g｜玉米粒 50g｜喷油 1.5g（约 5 下）｜芝麻撒料 8g｜罗勒海盐 适量</p>
+          <span class="fmt">生重计 ｜ ≈503 kcal ｜ 蛋白 52g ｜ 碳水 58g ｜ 脂肪 9g</span></div>
+        <div class="card"><h4>🥤 晚饭蔬果汁<span class="tm">随晚餐</span></h4>
+          <p>胡萝卜 100g ＋ 黄瓜 100g ＋ 羽衣甘蓝粉 5g ＋ 苹果汁 130ml，破壁机打匀，不滤渣</p>
+          <span class="fmt">≈133 kcal ｜ 碳水 30g</span></div>
         <div class="card"><h4>🌙 睡前轻食<span class="tm">21:00</span></h4>
           <p>牛奶 200ml 或 无糖酸奶 150g（可选）</p></div>
         <div class="card workout"><h4>🏃 晨间长有氧<span class="tm">08:00–09:00</span></h4>
@@ -512,11 +552,11 @@
     </div>
   </section>
 
-  <!-- ================= 周日：自由餐 + 备餐 ================= -->
+  <!-- ================= 周日：低碳日 + 备餐 ================= -->
   <section class="day" id="sun">
     <div class="day-head">
-      <span class="date">周日</span><span class="cn">自由清空餐 · 休息＋备餐</span>
-      <span class="tag rest">休息</span><span class="kcal">≈2400 kcal ｜ 蛋白 165g</span>
+      <span class="date">周日</span><span class="cn">完全休息</span>
+      <span class="tag lc">低碳日</span><span class="tag rest">休息</span><span class="kcal">≈2011 kcal ｜ 蛋白 158g ｜ 碳水 196g</span>
     </div>
     <div class="day-body">
       <div class="timeline">
@@ -531,29 +571,100 @@
       </div>
       <div class="cards">
         <div class="card"><h4>🥣 早餐<span class="tm">08:15</span></h4>
-          <p>燕麦粥（燕麦片 60g ＋ 牛奶 250ml）＋ 水煮蛋 2 个 ＋ 苹果 1 个 ＋ 核桃 10g</p></div>
-        <div class="card"><h4>🍲 午餐<span class="tm">12:30</span></h4>
-          <p>清空冰箱自由餐：用上周剩余鸡肉/牛肉/鱼/豆腐 + 杂粮饭 + 两种蔬菜，做成一盘「一餐盘」</p>
-          <span class="fmt">份量：一掌心蛋白 ＋ 一拳主食 ＋ 两拳蔬菜 ＋ 一拇指油</span></div>
+          <p>燕麦粥（燕麦片 30g ＋ 牛奶 250ml）＋ 水煮蛋 2 个 ＋ 核桃 10g</p>
+          <span class="fmt">低碳日：燕麦减到 30g、去掉苹果</span></div>
+        <div class="card"><h4>🍋 午餐 · 地中海柠檬烤鸡<span class="tm">12:30</span></h4>
+          <p>去骨鸡腿肉 200g｜希腊酸奶 110g（腌料＋蘸酱）｜糙米 45g（约煮成 110g）｜西兰花 200g｜西葫芦 150g｜彩椒 100g｜西芹碎 30g｜柠檬 30g（约半个挤汁）｜特级初榨橄榄油 8g｜香料 6g（黑胡椒·牛至·洋葱粉·烟熏红椒粉·大蒜粉·干辣椒碎）</p>
+          <span class="fmt">生重计 ｜ ≈705 kcal ｜ 蛋白 61g ｜ 碳水 70g ｜ 脂肪 24g</span></div>
         <div class="card"><h4>🥛 下午加餐<span class="tm">16:30</span></h4>
-          <p>无糖酸奶 200g ＋ 橙子 1 个 ＋ 核桃 10g</p></div>
-        <div class="card"><h4>🍗 晚餐<span class="tm">18:00</span></h4>
-          <p>重复餐单 A：清蒸鲈鱼 220g ＋ 蒸红薯 250g ＋ 蒜蓉菠菜 200g（橄榄油 5g）</p>
-          <span class="fmt">或按剩余食材替换为黄花鱼/鲫鱼</span></div>
+          <p>无糖酸奶 200g ＋ 核桃 10g</p>
+          <span class="fmt">低碳日：去掉橙子</span></div>
+        <div class="card"><h4>🥗 晚餐 · 地中海沙拉<span class="tm">18:00–19:00</span></h4>
+          <p>虾仁 240g｜土豆 150g（蒸熟）｜小番茄 150g｜西兰花 150g｜玉米粒 40g｜喷油 1.5g（约 5 下）｜芝麻撒料 8g｜罗勒海盐 适量</p>
+          <span class="fmt">生重计 ｜ ≈517 kcal ｜ 蛋白 59g ｜ 碳水 53g ｜ 脂肪 10g</span></div>
+        <div class="card"><h4>🥤 晚饭蔬果汁<span class="tm">随晚餐</span></h4>
+          <p>胡萝卜 100g ＋ 黄瓜 100g ＋ 羽衣甘蓝粉 5g ＋ 苹果汁 100ml，破壁机打匀，不滤渣</p>
+          <span class="fmt">≈120 kcal ｜ 碳水 27g</span></div>
         <div class="card"><h4>🌙 睡前轻食<span class="tm">21:00</span></h4>
           <p>牛奶 200ml 或 无糖酸奶 150g（可选）</p></div>
         <div class="card workout"><h4>🛒 备餐日任务<span class="tm">15:00</span></h4>
           <ul>
-            <li>煮 6 个蛋；鸡胸/鸡腿/牛肉/鱼按每餐份量分装冷藏或冷冻</li>
-            <li>一次煮好杂粮饭（大米＋糙米＋小米），分 4 份冷藏，3 天内吃完</li>
-            <li>洗切蔬菜：西兰花、菠菜、黄瓜、青椒、胡萝卜按袋分装</li>
-            <li>燕麦、小米按每餐份量装小袋；调一碗姜蒜生抽醋汁</li>
+            <li>鸡腿肉按 <b>200g/份</b> 分装冷冻，提前一晚冷藏解冻；虾仁按 200/240g 分装</li>
+            <li>糙米一次煮好，按 <b>80 / 55 / 45g（生重）</b> 分装冷冻；蒸好的土豆按 220/170/150g 冷藏</li>
+            <li>洗切：西兰花、西葫芦、彩椒、西芹、胡萝卜、黄瓜、小番茄按袋分装</li>
+            <li>调好腌料（希腊酸奶＋柠檬＋橄榄油＋香料）与罗勒海盐芝麻撒料，各装一小罐</li>
           </ul>
           <div class="note">不安排训练，散步即可。</div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ================= 碳水三档循环 ================= -->
+  <h2 class="section">碳水三档循环 · 按天怎么改克数</h2>
+  <p style="font-size:12.8px;color:var(--muted);margin:0 0 10px">
+    两份正餐的<b>食材完全不变</b>，只调 4 个「碳水杠杆」和 2 个「蛋白杠杆」。
+    碳水跟着训练量走，蛋白反向补偿 —— 这就是碳循环。<b>所有克数均为生重。</b>
+  </p>
+  <div class="notes">
+    <div class="note-card">
+      <h3>🔥 高碳日（周一 · 周四）</h3>
+      <ul>
+        <li>糙米 <span class="hl">80g</span>　土豆 <span class="hl">220g</span></li>
+        <li>玉米粒 <span class="hl">70g</span>　苹果汁 <span class="hl">180ml</span></li>
+        <li>蛋白杠杆：希腊酸奶 80g · 虾仁 200g</li>
+        <li>全日 <span class="hl">≈2745 kcal ｜ 蛋白 183g ｜ 碳水 348g</span></li>
+        <li>用在：下肢力量日，训练量最大</li>
+      </ul>
+    </div>
+    <div class="note-card">
+      <h3>⚖️ 中碳日（周二 · 周五 · 周六）</h3>
+      <ul>
+        <li>糙米 <span class="hl">55g</span>　土豆 <span class="hl">170g</span></li>
+        <li>玉米粒 <span class="hl">50g</span>　苹果汁 <span class="hl">130ml</span></li>
+        <li>蛋白杠杆：希腊酸奶 80g · 虾仁 200g</li>
+        <li>全日 <span class="hl">≈2356 kcal ｜ 蛋白 171g ｜ 碳水 270g</span></li>
+        <li>用在：上肢力量日 ＋ 长有氧日</li>
+      </ul>
+    </div>
+    <div class="note-card">
+      <h3>🌿 低碳日（周三 · 周日）</h3>
+      <ul>
+        <li>糙米 <span class="hl">45g</span>　土豆 <span class="hl">150g</span></li>
+        <li>玉米粒 <span class="hl">40g</span>　苹果汁 <span class="hl">100ml</span></li>
+        <li>蛋白杠杆：希腊酸奶 <span class="hl">110g</span> · 虾仁 <span class="hl">240g</span>（碳水降、蛋白升）</li>
+        <li>全日 <span class="hl">≈2006 kcal ｜ 蛋白 157g ｜ 碳水 205g</span></li>
+        <li>用在：短有氧＋核心日、完全休息日</li>
+      </ul>
+    </div>
+    <div class="note-card">
+      <h3>🧮 为什么这么排</h3>
+      <ul>
+        <li>肌肉里的糖原只在<b>训练中被消耗</b>，所以碳水要压在练得最狠的日子</li>
+        <li>下肢日（周一/周四）动用肌群最多、糖原消耗最大 → 排高碳</li>
+        <li>休息日（周日）几乎不消耗糖原 → 排低碳，留出脂肪供能窗口</li>
+        <li>一周日均 <span class="hl">≈2367 kcal</span>，与原方案 2400–2500 基本持平，但<b>分配更合理</b></li>
+      </ul>
+    </div>
+    <div class="note-card">
+      <h3>🔧 想再狠一点 / 再松一点</h3>
+      <ul>
+        <li>更低碳：低碳日糙米降到 <b>25g</b>、土豆 <b>100g</b>、苹果汁 <b>50ml</b>，早餐再去掉主食</li>
+        <li>更宽松：高碳日糙米提到 <b>100g</b>、土豆 <b>280g</b></li>
+        <li>无论怎么调，<span class="hl">蛋白质不要跟着降</span> —— 加虾仁或希腊酸奶补上</li>
+        <li>连续 2–3 周体重不动：先减高碳日主食，不要减蛋白</li>
+      </ul>
+    </div>
+    <div class="note-card">
+      <h3>⚠️ 执行要点</h3>
+      <ul>
+        <li>两份菜的<b>配料比例保持不动</b>，只改那 6 个数字，越简单越容易坚持</li>
+        <li>糙米一次煮好按 80/55/45g 分装冷冻；土豆蒸好按 220/170/150g 冷藏</li>
+        <li>蔬果汁<b>不要滤渣</b>，滤掉纤维等于把碳水控制的效果砍掉一半</li>
+        <li>份量一律以<b>生重</b>为准，用厨房秤称一周基本就能凭手感了</li>
+      </ul>
+    </div>
+  </div>
 
   <!-- ================= 每日注意事项 ================= -->
   <h2 class="section">每日注意事项</h2>
@@ -619,21 +730,21 @@
     <div class="tip-card">
       <h3>🐟 蛋白质互换</h3>
       <ul>
-        <li>鲈鱼 ↔ 黄花鱼 / 鲫鱼 / 草鱼段（清蒸都行）</li>
-        <li>虾仁 ↔ 鱿鱼 / 蛤蜊 / 猪里脊</li>
-        <li>鸡胸 ↔ 鸡腿（去皮）/ 鸭胸 / 瘦猪肉</li>
-        <li>牛肉 ↔ 牛里脊 / 瘦羊肉</li>
-        <li>北豆腐 ↔ 豆干 / 毛豆 / 黄豆（煮熟）</li>
+        <li>去骨鸡腿 ↔ 去皮鸡胸 / 鸭胸 / 瘦猪里脊（鸡胸更瘦，可加 20g）</li>
+        <li>虾仁 ↔ 鱿鱼 / 蛤蜊 / 龙利鱼（等重换，蛋白接近）</li>
+        <li>希腊酸奶 ↔ 无糖普通酸奶（需沥水，或用量 ×1.3）</li>
+        <li>喷油 ↔ 橄榄油刷一层（约 3g）</li>
+        <li>芝麻撒料 ↔ 奇亚籽 / 亚麻籽（等重）</li>
       </ul>
     </div>
     <div class="tip-card">
       <h3>🍚 主食互换</h3>
       <ul>
-        <li>杂粮饭 ↔ 白米饭（其他不变，量少 10g）</li>
-        <li>红薯 ↔ 土豆 / 南瓜 / 山药 / 芋头</li>
-        <li>玉米 ↔ 甜玉米粒（冷冻）/ 荞麦面</li>
-        <li>全麦馒头 ↔ 杂粮馒头 / 花卷 / 白馒头（半个）</li>
-        <li>荞麦面/挂面 ↔ 米粉 / 河粉</li>
+        <li>糙米 ↔ 藜麦 / 燕麦米 / 白米（换白米时加 5g 弥补纤维差）</li>
+        <li>土豆 ↔ 红薯 / 山药 / 芋头（等重换，红薯甜度更高）</li>
+        <li>玉米粒 ↔ 豌豆 / 鹰嘴豆（罐装沥干）</li>
+        <li>苹果汁 ↔ 无糖苹果泥 / 半个鲜苹果（纤维更多，更优）</li>
+        <li>羽衣甘蓝粉 ↔ 菠菜粉 / 抹茶粉（等量）</li>
       </ul>
     </div>
     <div class="tip-card">
@@ -654,8 +765,8 @@
     <div class="tip-card">
       <h3>⏰ 18 点吃不了正餐怎么办</h3>
       <ul>
-        <li>把 16:30 加餐加大：酸奶 300g ＋ 香蕉 1 根 ＋ 核桃 10g</li>
-        <li>21:00 到家吃「15 分钟快手晚餐」：蒸鱼/煎鸡胸 ＋ 冷冻杂粮饭 ＋ 白灼青菜，油减半</li>
+        <li>把 16:30 加餐加大：无糖酸奶 300g ＋ 香蕉 1 根 ＋ 核桃 10g</li>
+        <li>21:00 到家：把当日那份沙拉和蔬果汁吃完即可（烤鸡挪到次日午餐，别两顿都不吃）</li>
         <li>原则：睡前 2.5–3 小时吃完最后一口</li>
       </ul>
     </div>
@@ -678,9 +789,10 @@
   </div>
 
   <footer>
-    <p style="color:var(--accent);font-weight:800">版本 v2（10/8 更新）：晚餐已改为 18:00–19:00 正餐；如果页面上仍看到 21:15，说明看的是旧版缓存，请强制刷新（Cmd/Ctrl+Shift+R）或重新访问本页。</p>
-    <p><b>一次采购（约管 4 天，按 3 天循环 A/B/C 的量）：</b>鸡蛋 12 个 · 鸡胸肉 500g · 去皮鸡腿 500g · 瘦牛肉 450g · 虾仁 400g · 鲈鱼 1 条（约 450g，吃两顿）· 北豆腐 600g · 牛奶 2L · 无糖酸奶 1kg · 豆浆 800ml · 大米/糙米/小米 1kg · 燕麦片 400g · 红薯/土豆/玉米 1.5kg · 挂面/荞麦面 1 包 · 全麦馒头 4 个 · 西兰花 400g · 菠菜 400g · 菜心 500g · 番茄/小番茄 400g · 黄瓜 2 根 · 胡萝卜 2 根 · 青椒/洋葱/西葫芦/木耳/香菇 各 1 份 · 葱姜蒜 · 橄榄油 · 核桃/杏仁 150g · 香蕉 4 根 · 苹果 3 个 · 橙子 3 个。周末补一次鲜鱼鲜蔬即可。</p>
+    <p style="color:var(--accent);font-weight:800">版本 v3（10/9 更新）：午晚餐改为固定双菜（地中海柠檬烤鸡 / 地中海沙拉＋蔬果汁），并按训练量实行碳水三档循环。看完请强制刷新（Cmd/Ctrl+Shift+R）以避开旧缓存。</p>
+    <p><b>每周主料采购（按上面的碳循环克数）：</b>去骨鸡腿肉 1.4kg · 虾仁 1.5kg · 糙米 500g · 土豆 1.3kg · 玉米粒 400g（冷冻）· 苹果汁 1L · 西兰花 2.5kg · 西葫芦 1.1kg · 彩椒 700g · 小番茄 1.1kg · 西芹 250g · 胡萝卜 700g · 黄瓜 700g · 柠檬 3 个 · 希腊酸奶 700g · 羽衣甘蓝粉 40g · 芝麻撒料 · 罗勒海盐 · 喷油 · 特级初榨橄榄油 · 黑胡椒/牛至/洋葱粉/烟熏红椒粉/大蒜粉/干辣椒碎。<br>早餐与加餐（沿用原方案）：鸡蛋 14 个 · 牛奶 3.5L · 无糖酸奶 600g · 无糖豆浆 800ml · 燕麦片 300g · 小米 150g · 全麦馒头 4 个 · 苹果 5 个 · 橙子 4 个 · 香蕉 3 根 · 核桃 200g · 杏仁 100g · 蛋白粉 300g。</p>
     <p>预期：12–16 周达到 70kg；前两周体重因储水波动属正常，第三周起看趋势。减太快（每周超过 0.5kg）容易掉肌肉。所有替换遵循「蛋白质不减、主食随体重调整」两条底线。</p>
+    <p><b>口径说明：</b>每日热量与三大营养素为按食物成分表估算值（生重），实际随食材品牌、烹饪损耗会有 ±5% 偏差；带「约」的份量为近似值。这不是医疗建议，若有基础疾病请先咨询医生或注册营养师。</p>
   </footer>
 </div>
 </body>
