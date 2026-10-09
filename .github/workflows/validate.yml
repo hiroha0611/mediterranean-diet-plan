@@ -1,0 +1,57 @@
+name: 页面校验
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: html-check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 准备 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 校验页面结构
+        run: python3 scripts/check_html.py index.html
+
+      - name: 校验 PR 内的提交信息格式
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          pattern='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([^)]+\))?!?: .+'
+          failed=0
+          while IFS= read -r subject; do
+            case "$subject" in
+              Merge*|"") continue ;;
+            esac
+            if ! printf '%s' "$subject" | grep -Eq "$pattern"; then
+              echo "::error::提交信息不符合 Conventional Commits 格式：$subject"
+              failed=1
+            else
+              echo "符合规范：$subject"
+            fi
+          done < <(git log --format=%s "$BASE_SHA..$HEAD_SHA")
+          if [ "$failed" -ne 0 ]; then
+            echo "请参考 CONTRIBUTING.md，把提交信息改成「类型(范围): 描述」的形式。"
+            exit 1
+          fi

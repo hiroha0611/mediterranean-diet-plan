@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 本地打包产物
+*.zip
+*.tar.gz
+
+# Python（校验脚本的缓存）
+__pycache__/
+*.py[cod]
+.venv/
