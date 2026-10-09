@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>地中海饮食 · 增肌减脂周历（中文循环版）</title>
+<style>
+  :root{
+    --paper:#faf6ef; --ink:#2b3323; --muted:#70755f; --line:#e3dbc8;
+    --olive:#5f7432; --olive-bg:#eef2e1; --teal:#2f6f6e; --teal-bg:#e2f0ee;
+    --sand:#a08b5e; --sand-bg:#f3ebd9; --accent:#c96f4a;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:#33382c; color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+    line-height:1.55;
+  }
+  .sheet{max-width:1120px;margin:0 auto;padding:26px 30px;background:var(--paper)}
+
+  header{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:14px;border-bottom:3px solid var(--ink);padding-bottom:14px}
+  header h1{margin:0;font-size:26px;letter-spacing:1px}
+  header .sub{color:var(--muted);font-size:13px;margin-top:4px}
+  .ver-badge{
+    display:inline-block;margin-top:10px;background:var(--accent);color:#fff;
+    padding:5px 14px;border-radius:999px;font-size:12.5px;font-weight:800;
+    box-shadow:0 1px 0 rgba(0,0,0,.08);
+  }
+  .btn-print{
+    appearance:none;border:0;background:var(--olive);color:#fff;font-size:13px;font-weight:700;
+    padding:9px 18px;border-radius:8px;cursor:pointer;font-family:inherit;
+  }
+  .btn-print:hover{background:#4d5f28}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+  .chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12px;color:var(--muted)}
+  .chip b{color:var(--ink)}
+  .legend{display:flex;gap:14px;font-size:12px;color:var(--muted);margin:8px 0 2px}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+  .nav{display:flex;gap:6px;margin:10px 0 4px;flex-wrap:wrap}
+  .nav a{
+    text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);
+    padding:4px 11px;border-radius:7px;font-size:12px;font-weight:700;
+  }
+  .nav a:hover{border-color:var(--olive)}
+
+  .wins{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin:12px 0 2px}
+  .win{background:#fff;border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:10px;padding:9px 13px;font-size:12.3px}
+  .win b{display:block;font-size:13px;margin-bottom:2px}
+  .win .use{color:var(--muted)}
+  .win.off{border-left-color:#c7b9a0;opacity:.82}
+  .win.off b{color:var(--muted)}
+
+  .day{margin:16px 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;scroll-margin-top:12px}
+  .day-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:11px 18px;border-bottom:1px solid var(--line)}
+  .day-head .date{font-size:19px;font-weight:800}
+  .day-head .cn{color:var(--muted);font-size:12px;font-weight:400}
+  .day-head .tag{padding:3px 12px;border-radius:999px;font-size:12px;font-weight:700}
+  .day-head .kcal{margin-left:auto;font-size:12px;color:var(--muted);font-weight:600}
+  .tag.power{background:var(--olive-bg);color:var(--olive)}
+  .tag.cardio{background:var(--teal-bg);color:var(--teal)}
+  .tag.rest{background:var(--sand-bg);color:var(--sand)}
+  .day-body{display:grid;grid-template-columns:165px 1fr}
+  .timeline{padding:13px 16px;border-right:1px dashed var(--line);background:#fcf9f2}
+  .tl{display:flex;gap:8px;padding:5.5px 0;font-size:12.5px;border-bottom:1px dotted #eee5d2}
+  .tl:last-child{border-bottom:0}
+  .tl .t{font-weight:800;color:var(--accent);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .timeline .title{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--muted);margin:0 0 4px;text-align:center}
+
+  .cards{padding:13px 15px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;align-content:start}
+  .card{border:1px solid var(--line);border-radius:10px;padding:10px 13px;background:#fffdf8;font-size:12.8px}
+  .card h4{margin:0 0 5px;font-size:12.8px;font-weight:800;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+  .card h4 .tm{color:var(--accent);font-size:11.5px;white-space:nowrap}
+  .card p{margin:0}
+  .card .fmt{color:var(--muted);font-size:11.5px;display:block;margin-top:3px}
+  .card.workout{grid-column:1/-1;background:var(--olive-bg)}
+  .card.workout h4{color:var(--olive)}
+  .card.workout ul{margin:0;padding-left:17px}
+  .card.workout li{margin:2.5px 0}
+  .card.workout .note{margin-top:7px;padding-top:7px;border-top:1px dashed #c9d3ae;font-weight:700;color:var(--teal)}
+  .card.workout .sets{color:var(--muted);font-size:11.5px}
+
+  h2.section{font-size:18px;margin:26px 0 10px;padding-left:10px;border-left:5px solid var(--accent)}
+  .notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+  .note-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 16px;font-size:12.8px}
+  .note-card h3{margin:0 0 7px;font-size:14.5px}
+  .note-card ul{margin:0;padding-left:17px}
+  .note-card li{margin:4px 0;color:#3c4235}
+  .note-card .hl{color:var(--accent);font-weight:800}
+
+  .tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:12px}
+  .tip-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 16px;font-size:12.8px}
+  .tip-card h3{margin:0 0 7px;font-size:14.5px}
+  .tip-card ul{margin:0;padding-left:17px}
+  .tip-card li{margin:4px 0;color:#3c4235}
+  footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--ink);font-size:11.5px;color:var(--muted)}
+
+  /* ---------- mobile / tablet responsive ---------- */
+  @media (max-width: 940px){
+    .day-body{grid-template-columns:145px 1fr}
+  }
+  @media (max-width: 760px){
+    html{scroll-behavior:smooth}
+    body{background:var(--paper)}
+    .sheet{max-width:100%;padding:14px 12px 32px;margin:0}
+
+    header{gap:10px;padding-bottom:11px}
+    header h1{font-size:20px;letter-spacing:.5px}
+    header .sub{font-size:12px}
+    .ver-badge{display:block;margin-top:8px;font-size:11px;padding:4px 10px;line-height:1.45}
+    .btn-print{font-size:12px;padding:8px 14px}
+
+    .chips{
+      flex-wrap:nowrap;overflow-x:auto;gap:6px;margin:12px 0 2px;
+      -webkit-overflow-scrolling:touch;padding-bottom:5px;
+    }
+    .chip{flex:0 0 auto;white-space:nowrap;font-size:11px;padding:4px 10px}
+    .legend{flex-wrap:wrap;gap:10px;font-size:11px}
+    .nav{
+      flex-wrap:nowrap;overflow-x:auto;gap:6px;margin:9px 0 2px;
+      -webkit-overflow-scrolling:touch;padding-bottom:6px;
+    }
+    .nav a{flex:0 0 auto;white-space:nowrap;padding:5px 12px;font-size:12px}
+
+    .wins{grid-template-columns:1fr;gap:7px}
+    .win{font-size:11.8px;padding:8px 11px}
+    .win b{font-size:12.5px}
+
+    .day{margin:12px 0;border-radius:12px}
+    .day-head{padding:10px 13px;gap:7px}
+    .day-head .date{font-size:17px}
+    .day-head .cn{font-size:11px}
+    .day-head .tag{font-size:11px;padding:2px 10px}
+    .day-head .kcal{font-size:11px}
+
+    .day-body{display:block}
+    .timeline{
+      display:flex;flex-direction:row;gap:8px;overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      border-right:0;border-bottom:1px dashed var(--line);
+      padding:9px 12px;background:#fcf9f2;
+    }
+    .timeline .title{flex:0 0 auto;margin:0 4px 0 0;align-self:center;font-size:10.5px}
+    .tl{
+      flex:0 0 auto;flex-direction:column;align-items:center;text-align:center;
+      border-bottom:0;border-right:1px dotted #eee5d2;
+      padding:4px 11px;min-width:66px;gap:3px;
+    }
+    .tl:last-child{border-right:0}
+    .tl .t{font-size:11.5px}
+    .tl span:last-child{font-size:10.5px;white-space:nowrap;line-height:1.3}
+
+    .cards{grid-template-columns:1fr;padding:11px 12px 13px;gap:9px}
+    .card{font-size:12.4px;padding:10px 12px;border-radius:10px}
+    .card h4{font-size:12.4px}
+    .card h4 .tm{font-size:11px}
+    .card .fmt{font-size:11px}
+    .card.workout{grid-column:auto}
+    .card.workout li{margin:3px 0;font-size:12px}
+    .card.workout .sets{font-size:10.8px}
+    .card.workout .note{font-size:12px}
+
+    h2.section{font-size:16px;margin:22px 0 9px;padding-left:8px}
+    .notes,.tips{grid-template-columns:1fr;gap:10px}
+    .note-card,.tip-card{font-size:12.3px;padding:11px 13px}
+    .note-card h3,.tip-card h3{font-size:13.5px}
+
+    footer{font-size:10.8px;margin-top:18px}
+  }
+  @media (max-width: 400px){
+    header h1{font-size:18px}
+    .day-head .kcal{width:100%;margin-left:0}
+    .cards{grid-template-columns:1fr}
+  }
+
+  @media print{
+    body{background:#fff}
+    .sheet{max-width:none;padding:0;margin:0}
+    .no-print{display:none!important}
+    .day-head{padding:8px 12px}
+    .day-body{grid-template-columns:140px 1fr}
+    .timeline{padding:9px 11px}
+    .tl{padding:4px 0;font-size:11px}
+    .cards{padding:9px 11px;gap:8px}
+    .card{padding:8px 10px;font-size:11px;line-height:1.5}
+    .card h4{font-size:11px}
+    .card h4 .tm{font-size:10px}
+    .card .fmt{font-size:10px}
+    .card.workout .sets{font-size:10px}
+    .notes,.tips{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+    .note-card,.tip-card{padding:9px 11px;font-size:11px}
+    .note-card h3,.tip-card h3{font-size:12.5px}
+    .day{break-inside:avoid;margin:10px 0}
+  }
+  @page{size:A4;margin:9mm}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header>
+    <div>
+      <h1>地中海饮食 · 增肌减脂周历（中文循环版）</h1>
+      <div class="sub">23岁 · 178cm · 75kg → 目标 70kg ｜ 12–16 周 ｜ 3 天餐单循环 ×2 ＋ 力量 4 次/周 ＋ 有氧 2 次/周</div>
+      <div class="ver-badge">v2 已更新 · 晚餐正餐 = 18:00–19:00 · 睡前 21:00 仅为可选轻食</div>
+    </div>
+    <button class="btn-print no-print" onclick="window.print()">打印 / 存为 PDF</button>
+  </header>
+
+  <div class="chips no-print">
+    <span class="chip">每日热量 <b>≈2400–2500 kcal</b></span>
+    <span class="chip">每日蛋白质 <b>160–175 g</b></span>
+    <span class="chip">喝水 <b>2.5–3 L</b></span>
+    <span class="chip">睡眠 <b>23:30 → 07:45</b></span>
+    <span class="chip">每 3 天采购一次</span>
+  </div>
+  <div class="legend no-print">
+    <span><i style="background:var(--olive)"></i>力量日</span>
+    <span><i style="background:var(--teal)"></i>有氧日</span>
+    <span><i style="background:var(--sand)"></i>休息/备餐日</span>
+  </div>
+  <nav class="nav no-print">
+    <a href="#mon">周一</a><a href="#tue">周二</a><a href="#wed">周三</a><a href="#thu">周四</a>
+    <a href="#fri">周五</a><a href="#sat">周六</a><a href="#sun">周日</a>
+  </nav>
+
+  <div class="wins no-print">
+    <div class="win"><b>🌅 晨间窗 07:45–09:30</b><span class="use">只用 2 天：周三核心＋周六长有氧</span></div>
+    <div class="win"><b>🌞 午间窗 12:00–13:30</b><span class="use">周一/二/四/五力量训练，练完吃饭</span></div>
+    <div class="win"><b>🌆 傍晚窗 18:00–19:00</b><span class="use">不训练：正餐 + 散步 20 分钟</span></div>
+    <div class="win off"><b>🌙 睡前窗 21:00–22:00</b><span class="use">不安排训练：洗漱放松；仅作应急替补</span></div>
+  </div>
+
+  <!-- ================= 周一：餐单A + 下肢A ================= -->
+  <section class="day" id="mon">
+    <div class="day-head">
+      <span class="date">周一</span><span class="cn">餐单 A · 力量日下肢A</span>
+      <span class="tag power">力量</span><span class="kcal">≈2450 kcal ｜ 蛋白 170g</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <p class="title">时间轴</p>
+        <div class="tl"><span class="t">07:45</span><span>起床 · 见光</span></div>
+        <div class="tl"><span class="t">08:00</span><span>早餐</span></div>
+        <div class="tl"><span class="t">10:00</span><span>上班</span></div>
+        <div class="tl"><span class="t">11:30</span><span>练前加餐</span></div>
+        <div class="tl"><span class="t">12:00</span><span>力量 · 下肢A</span></div>
+        <div class="tl"><span class="t">13:10</span><span>午餐</span></div>
+        <div class="tl"><span class="t">16:30</span><span>下午加餐</span></div>
+        <div class="tl"><span class="t">18:00</span><span>晚餐 · 散步</span></div>
+        <div class="tl"><span class="t">21:00</span><span>睡前轻食</span></div>
+        <div class="tl"><span class="t">23:30</span><span>入睡</span></div>
+      </div>
+      <div class="cards">
+        <div class="card"><h4>🥣 早餐<span class="tm">08:00</span></h4>
+          <p>燕麦粥（燕麦片 60g ＋ 牛奶 250ml）＋ 水煮蛋 2 个 ＋ 苹果 1 个 ＋ 核桃 10g</p></div>
+        <div class="card"><h4>🍌 练前加餐<span class="tm">11:30</span></h4>
+          <p>香蕉 1 根 ＋ 无糖酸奶 100g</p></div>
+        <div class="card"><h4>🍗 午餐<span class="tm">13:10</span></h4>
+          <p>少油煎鸡胸肉 240g ＋ 杂粮饭（大米＋糙米＋小米，生米 80g）＋ 白灼西兰花 200g ＋ 清炒胡萝卜丝 100g（橄榄油 8g）</p></div>
+        <div class="card"><h4>🥛 下午加餐<span class="tm">16:30</span></h4>
+          <p>蛋白粉 25g ＋ 牛奶 250ml ＋ 橙子 1 个</p>
+          <span class="fmt">不喝蛋白粉：换成 2 个水煮蛋＋100g 酸奶</span></div>
+        <div class="card"><h4>🐟 晚餐<span class="tm">18:00–19:00</span></h4>
+          <p>清蒸鲈鱼 220g ＋ 蒸红薯 300g ＋ 蒜蓉菠菜 200g（橄榄油 5g）</p></div>
+        <div class="card"><h4>🌙 睡前轻食<span class="tm">21:00</span></h4>
+          <p>牛奶 200ml 或 无糖酸奶 150g（可选，饿才吃）</p></div>
+        <div class="card workout"><h4>🏋️ 力量 · 下肢A<span class="tm">12:00–13:00</span></h4>
+          <ul>
+            <li>杠铃深蹲（无杠铃：高脚杯深蹲/腿举）<span class="sets">4×6–8 · 2min</span></li>
+            <li>罗马尼亚硬拉 <span class="sets">3×8–10 · 2min</span></li>
+            <li>保加利亚分腿蹲 <span class="sets">3×8–10/侧 · 90s</span></li>
+            <li>坐姿腿弯举 <span class="sets">3×12–15 · 90s</span></li>
+            <li>站姿提踵 <span class="sets">3×15–20 · 60s</span></li>
+            <li>平板支撑 <span class="sets">3×45–60s · 60s</span></li>
+          </ul>
+          <div class="note">傍晚 18:30–19:00：散步 20 分钟，不额外训练。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 周二：餐单B + 上肢A ================= -->
+  <section class="day" id="tue">
+    <div class="day-head">
+      <span class="date">周二</span><span class="cn">餐单 B · 力量日上肢A</span>
+      <span class="tag power">力量</span><span class="kcal">≈2430 kcal ｜ 蛋白 168g</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <p class="title">时间轴</p>
+        <div class="tl"><span class="t">07:45</span><span>起床 · 见光</span></div>
+        <div class="tl"><span class="t">08:00</span><span>早餐</span></div>
+        <div class="tl"><span class="t">10:00</span><span>上班</span></div>
+        <div class="tl"><span class="t">11:30</span><span>练前加餐</span></div>
+        <div class="tl"><span class="t">12:00</span><span>力量 · 上肢A</span></div>
+        <div class="tl"><span class="t">13:10</span><span>午餐</span></div>
+        <div class="tl"><span class="t">16:30</span><span>下午加餐</span></div>
+        <div class="tl"><span class="t">18:00</span><span>晚餐 · 散步</span></div>
+        <div class="tl"><span class="t">21:00</span><span>睡前轻食</span></div>
+        <div class="tl"><span class="t">23:30</span><span>入睡</span></div>
+      </div>
+      <div class="cards">
+        <div class="card"><h4>🌽 早餐<span class="tm">08:00</span></h4>
+          <p>蒸玉米 1 根（约 300g）＋ 煎蛋 2 个（橄榄油 4g）＋ 无糖豆浆 400ml ＋ 小番茄 100g</p></div>
+        <div class="card"><h4>🍎 练前加餐<span class="tm">11:30</span></h4>
+          <p>苹果 1 个 ＋ 杏仁 15g</p></div>
+        <div class="card"><h4>🥩 午餐<span class="tm">13:10</span></h4>
+          <p>青椒洋葱炒瘦牛肉 220g ＋ 米饭（生米 90g）＋ 凉拌黄瓜 150g（橄榄油 8g）</p></div>
+        <div class="card"><h4>🥛 下午加餐<span class="tm">16:30</span></h4>
+          <p>蛋白粉 25g ＋ 牛奶 250ml ＋ 核桃 10g</p>
+          <span class="fmt">不喝蛋白粉：换成 2 个水煮蛋＋100g 酸奶</span></div>
+        <div class="card"><h4>🍤 晚餐<span class="tm">18:00–19:00</span></h4>
+          <p>葱姜炒虾仁 200g ＋ 西葫芦炒木耳 200g ＋ 荞麦面/挂面（干 90g，橄榄油 8g）</p></div>
+        <div class="card"><h4>🌙 睡前轻食<span class="tm">21:00</span></h4>
+          <p>牛奶 200ml 或 无糖酸奶 150g（可选）</p></div>
+        <div class="card workout"><h4>🏋️ 力量 · 上肢A<span class="tm">12:00–13:00</span></h4>
+          <ul>
+            <li>杠铃卧推（或哑铃卧推）<span class="sets">4×6–8 · 2min</span></li>
+            <li>高位下拉（能做引体就练引体）<span class="sets">4×8–10 · 2min</span></li>
+            <li>上斜哑铃卧推 <span class="sets">3×8–10 · 90s</span></li>
+            <li>坐姿划船 <span class="sets">3×10–12 · 90s</span></li>
+            <li>哑铃侧平举 <span class="sets">3×12–15 · 60s</span></li>
+            <li>绳索下压＋哑铃弯举（超级组）<span class="sets">各3×12–15 · 90s</span></li>
+            <li>面拉 <span class="sets">3×15–20 · 60s</span></li>
+          </ul>
+          <div class="note">傍晚 18:30–19:00：散步 20 分钟。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 周三：餐单C + 晨间有氧 ================= -->
+  <section class="day" id="wed">
+    <div class="day-head">
+      <span class="date">周三</span><span class="cn">餐单 C · 晨间有氧＋核心</span>
+      <span class="tag cardio">有氧</span><span class="kcal">≈2420 kcal ｜ 蛋白 165g</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <p class="title">时间轴</p>
+        <div class="tl"><span class="t">07:45</span><span>起床 · 见光</span></div>
+        <div class="tl"><span class="t">08:00</span><span>晨练：有氧＋核心</span></div>
+        <div class="tl"><span class="t">08:50</span><span>早餐（练后吃）</span></div>
+        <div class="tl"><span class="t">10:00</span><span>上班</span></div>
+        <div class="tl"><span class="t">12:30</span><span>午餐</span></div>
+        <div class="tl"><span class="t">16:30</span><span>下午加餐</span></div>
+        <div class="tl"><span class="t">18:00</span><span>晚餐 · 散步</span></div>
+        <div class="tl"><span class="t">21:00</span><span>睡前轻食</span></div>
+        <div class="tl"><span class="t">23:30</span><span>入睡</span></div>
+      </div>
+      <div class="cards">
+        <div class="card"><h4>🥣 早餐（练后）<span class="tm">08:50</span></h4>
+          <p>小米粥（小米 45g）＋ 水煮蛋 2 个 ＋ 全麦馒头/花卷 1 个（约 70g）＋ 橙子 1 个 ＋ 杏仁 10g</p></div>
+        <div class="card"><h4>🍗 午餐<span class="tm">12:30</span></h4>
+          <p>香菇烧去皮鸡腿肉 250g ＋ 米饭（生米 75g）＋ 白灼菜心/上海青 250g（橄榄油 8g）</p></div>
+        <div class="card"><h4>🥛 下午加餐<span class="tm">16:30</span></h4>
+          <p>无糖酸奶 300g ＋ 苹果 1 个 ＋ 核桃 10g</p></div>
+        <div class="card"><h4>🥘 晚餐<span class="tm">18:00–19:00</span></h4>
+          <p>肉末烧豆腐（鸡胸肉末 100g ＋ 北豆腐 300g）＋ 蒸土豆 250g ＋ 清炒西兰花 150g（橄榄油 8g）</p></div>
+        <div class="card"><h4>🌙 睡前轻食<span class="tm">21:00</span></h4>
+          <p>牛奶 200ml 或 无糖酸奶 150g（可选）</p></div>
+        <div class="card workout"><h4>🏃 晨间有氧 ＋ 核心<span class="tm">08:00–08:50</span></h4>
+          <ul>
+            <li>爬坡走/椭圆机/原地快走 25 分钟 <span class="sets">坡度10–12% · 心率120–140</span></li>
+            <li>平板支撑 <span class="sets">3×45s</span></li>
+            <li>侧平板 <span class="sets">3×30s/侧</span></li>
+            <li>死虫 <span class="sets">3×10次/侧</span></li>
+          </ul>
+          <div class="note">起床后先喝 300ml 水，可吃半根香蕉再练；不安排晚间训练。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 周四：餐单A + 下肢B ================= -->
+  <section class="day" id="thu">
+    <div class="day-head">
+      <span class="date">周四</span><span class="cn">餐单 A · 力量日下肢B</span>
+      <span class="tag power">力量</span><span class="kcal">≈2450 kcal ｜ 蛋白 170g</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <p class="title">时间轴</p>
+        <div class="tl"><span class="t">07:45</span><span>起床 · 见光</span></div>
+        <div class="tl"><span class="t">08:00</span><span>早餐</span></div>
+        <div class="tl"><span class="t">10:00</span><span>上班</span></div>
+        <div class="tl"><span class="t">11:30</span><span>练前加餐</span></div>
+        <div class="tl"><span class="t">12:00</span><span>力量 · 下肢B</span></div>
+        <div class="tl"><span class="t">13:10</span><span>午餐</span></div>
+        <div class="tl"><span class="t">16:30</span><span>下午加餐</span></div>
+        <div class="tl"><span class="t">18:00</span><span>晚餐 · 散步</span></div>
+        <div class="tl"><span class="t">21:00</span><span>睡前轻食</span></div>
+        <div class="tl"><span class="t">23:30</span><span>入睡</span></div>
+      </div>
+      <div class="cards">
+        <div class="card"><h4>🥣 早餐<span class="tm">08:00</span></h4>
+          <p>燕麦粥（燕麦片 60g ＋ 牛奶 250ml）＋ 水煮蛋 2 个 ＋ 苹果 1 个 ＋ 核桃 10g</p></div>
+        <div class="card"><h4>🍌 练前加餐<span class="tm">11:30</span></h4>
+          <p>香蕉 1 根 ＋ 无糖酸奶 100g</p></div>
+        <div class="card"><h4>🍗 午餐<span class="tm">13:10</span></h4>
+          <p>少油煎鸡胸肉 240g ＋ 杂粮饭（生米 80g）＋ 白灼西兰花 200g ＋ 清炒胡萝卜丝 100g（橄榄油 8g）</p></div>
+        <div class="card"><h4>🥛 下午加餐<span class="tm">16:30</span></h4>
+          <p>蛋白粉 25g ＋ 牛奶 250ml ＋ 橙子 1 个</p>
+          <span class="fmt">不喝蛋白粉：换成 2 个水煮蛋＋100g 酸奶</span></div>
+        <div class="card"><h4>🐟 晚餐<span class="tm">18:00–19:00</span></h4>
+          <p>清蒸鲈鱼 220g ＋ 蒸红薯 300g ＋ 蒜蓉菠菜 200g（橄榄油 5g）</p></div>
+        <div class="card"><h4>🌙 睡前轻食<span class="tm">21:00</span></h4>
+          <p>牛奶 200ml 或 无糖酸奶 150g（可选）</p></div>
+        <div class="card workout"><h4>🏋️ 力量 · 下肢B<span class="tm">12:00–13:00</span></h4>
+          <ul>
+            <li>六角杠/杠铃硬拉（比周一更重）<span class="sets">4×5–6 · 2–3min</span></li>
+            <li>腿举 <span class="sets">3×8–10 · 90s</span></li>
+            <li>臀推 <span class="sets">3×10–12 · 90s</span></li>
+            <li>腿屈伸 <span class="sets">3×12–15 · 60s</span></li>
+            <li>单腿罗马尼亚硬拉 <span class="sets">3×8–10/侧 · 90s</span></li>
+            <li>悬垂举腿 <span class="sets">3×12–15 · 60s</span></li>
+          </ul>
+          <div class="note">傍晚 18:30–19:00：散步 20 分钟。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 周五：餐单B + 上肢B ================= -->
+  <section class="day" id="fri">
+    <div class="day-head">
+      <span class="date">周五</span><span class="cn">餐单 B · 力量日上肢B</span>
+      <span class="tag power">力量</span><span class="kcal">≈2430 kcal ｜ 蛋白 168g</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <p class="title">时间轴</p>
+        <div class="tl"><span class="t">07:45</span><span>起床 · 见光</span></div>
+        <div class="tl"><span class="t">08:00</span><span>早餐</span></div>
+        <div class="tl"><span class="t">10:00</span><span>上班</span></div>
+        <div class="tl"><span class="t">11:30</span><span>练前加餐</span></div>
+        <div class="tl"><span class="t">12:00</span><span>力量 · 上肢B</span></div>
+        <div class="tl"><span class="t">13:10</span><span>午餐</span></div>
+        <div class="tl"><span class="t">16:30</span><span>下午加餐</span></div>
+        <div class="tl"><span class="t">18:00</span><span>晚餐 · 散步</span></div>
+        <div class="tl"><span class="t">21:00</span><span>睡前轻食</span></div>
+        <div class="tl"><span class="t">23:30</span><span>入睡</span></div>
+      </div>
+      <div class="cards">
+        <div class="card"><h4>🌽 早餐<span class="tm">08:00</span></h4>
+          <p>蒸玉米 1 根（约 300g）＋ 煎蛋 2 个（橄榄油 4g）＋ 无糖豆浆 400ml ＋ 小番茄 100g</p></div>
+        <div class="card"><h4>🍎 练前加餐<span class="tm">11:30</span></h4>
+          <p>苹果 1 个 ＋ 杏仁 15g</p></div>
+        <div class="card"><h4>🥩 午餐<span class="tm">13:10</span></h4>
+          <p>青椒洋葱炒瘦牛肉 220g ＋ 米饭（生米 90g）＋ 凉拌黄瓜 150g（橄榄油 8g）</p></div>
+        <div class="card"><h4>🥛 下午加餐<span class="tm">16:30</span></h4>
+          <p>蛋白粉 25g ＋ 牛奶 250ml ＋ 核桃 10g</p>
+          <span class="fmt">不喝蛋白粉：换成 2 个水煮蛋＋100g 酸奶</span></div>
+        <div class="card"><h4>🍤 晚餐<span class="tm">18:00–19:00</span></h4>
+          <p>葱姜炒虾仁 200g ＋ 西葫芦炒木耳 200g ＋ 荞麦面/挂面（干 90g，橄榄油 8g）</p></div>
+        <div class="card"><h4>🌙 睡前轻食<span class="tm">21:00</span></h4>
+          <p>牛奶 200ml 或 无糖酸奶 150g（可选）</p></div>
+        <div class="card workout"><h4>🏋️ 力量 · 上肢B<span class="tm">12:00–13:00</span></h4>
+          <ul>
+            <li>站姿哑铃/杠铃推举 <span class="sets">4×6–8 · 2min</span></li>
+            <li>单臂哑铃划船 <span class="sets">4×10–12/侧 · 90s</span></li>
+            <li>绳索夹胸 <span class="sets">3×12–15 · 90s</span></li>
+            <li>反握高位下拉 <span class="sets">3×10–12 · 90s</span></li>
+            <li>哑铃侧平举 <span class="sets">3×12–15 · 60s</span></li>
+            <li>绳索下压＋弯举（超级组）<span class="sets">各3×12–15 · 90s</span></li>
+            <li>农夫行走 <span class="sets">3×40米 · 90s</span></li>
+          </ul>
+          <div class="note">傍晚 18:30–19:00：散步 20 分钟。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 周六：餐单C变体 + 晨间长有氧 ================= -->
+  <section class="day" id="sat">
+    <div class="day-head">
+      <span class="date">周六</span><span class="cn">餐单 C · 晨间长有氧日</span>
+      <span class="tag cardio">有氧</span><span class="kcal">≈2380 kcal ｜ 蛋白 168g</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <p class="title">时间轴</p>
+        <div class="tl"><span class="t">07:45</span><span>起床 · 见光</span></div>
+        <div class="tl"><span class="t">08:00</span><span>晨练：长有氧</span></div>
+        <div class="tl"><span class="t">09:00</span><span>早餐（练后吃）</span></div>
+        <div class="tl"><span class="t">12:30</span><span>午餐</span></div>
+        <div class="tl"><span class="t">15:30</span><span>下午加餐</span></div>
+        <div class="tl"><span class="t">18:00</span><span>晚餐</span></div>
+        <div class="tl"><span class="t">22:00</span><span>洗漱放松</span></div>
+        <div class="tl"><span class="t">23:30</span><span>入睡</span></div>
+      </div>
+      <div class="cards">
+        <div class="card"><h4>🥣 早餐（练后）<span class="tm">09:00</span></h4>
+          <p>小米粥（小米 45g）＋ 水煮蛋 2 个 ＋ 全麦馒头/花卷 1 个（约 70g）＋ 橙子 1 个 ＋ 杏仁 10g</p></div>
+        <div class="card"><h4>🍗 午餐<span class="tm">12:30</span></h4>
+          <p>香菇烧去皮鸡腿肉 250g ＋ 米饭（生米 75g）＋ 白灼菜心/上海青 250g（橄榄油 8g）</p></div>
+        <div class="card"><h4>🥛 下午加餐<span class="tm">15:30</span></h4>
+          <p>无糖酸奶 300g ＋ 苹果 1 个 ＋ 核桃 10g</p></div>
+        <div class="card"><h4>🥘 晚餐<span class="tm">18:00</span></h4>
+          <p>肉末烧豆腐（鸡胸肉末 100g ＋ 北豆腐 300g）＋ 蒸土豆 300g ＋ 清炒西兰花 150g（橄榄油 8g）</p></div>
+        <div class="card"><h4>🌙 睡前轻食<span class="tm">21:00</span></h4>
+          <p>牛奶 200ml 或 无糖酸奶 150g（可选）</p></div>
+        <div class="card workout"><h4>🏃 晨间长有氧<span class="tm">08:00–09:00</span></h4>
+          <ul>
+            <li>踏步机/椭圆机/爬坡走 50–60 分钟 <span class="sets">心率120–140 · 能说整句但微喘</span></li>
+            <li>结束后拉伸 5–10 分钟</li>
+          </ul>
+          <div class="note">若周六要上班：把这次有氧挪到周日早上，周日晚上照常休息。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 周日：自由餐 + 备餐 ================= -->
+  <section class="day" id="sun">
+    <div class="day-head">
+      <span class="date">周日</span><span class="cn">自由清空餐 · 休息＋备餐</span>
+      <span class="tag rest">休息</span><span class="kcal">≈2400 kcal ｜ 蛋白 165g</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <p class="title">时间轴</p>
+        <div class="tl"><span class="t">07:45</span><span>起床 · 见光</span></div>
+        <div class="tl"><span class="t">08:15</span><span>早餐</span></div>
+        <div class="tl"><span class="t">12:30</span><span>午餐</span></div>
+        <div class="tl"><span class="t">15:00</span><span>备餐约 1h</span></div>
+        <div class="tl"><span class="t">16:30</span><span>下午加餐</span></div>
+        <div class="tl"><span class="t">18:00</span><span>晚餐</span></div>
+        <div class="tl"><span class="t">23:30</span><span>入睡</span></div>
+      </div>
+      <div class="cards">
+        <div class="card"><h4>🥣 早餐<span class="tm">08:15</span></h4>
+          <p>燕麦粥（燕麦片 60g ＋ 牛奶 250ml）＋ 水煮蛋 2 个 ＋ 苹果 1 个 ＋ 核桃 10g</p></div>
+        <div class="card"><h4>🍲 午餐<span class="tm">12:30</span></h4>
+          <p>清空冰箱自由餐：用上周剩余鸡肉/牛肉/鱼/豆腐 + 杂粮饭 + 两种蔬菜，做成一盘「一餐盘」</p>
+          <span class="fmt">份量：一掌心蛋白 ＋ 一拳主食 ＋ 两拳蔬菜 ＋ 一拇指油</span></div>
+        <div class="card"><h4>🥛 下午加餐<span class="tm">16:30</span></h4>
+          <p>无糖酸奶 200g ＋ 橙子 1 个 ＋ 核桃 10g</p></div>
+        <div class="card"><h4>🍗 晚餐<span class="tm">18:00</span></h4>
+          <p>重复餐单 A：清蒸鲈鱼 220g ＋ 蒸红薯 250g ＋ 蒜蓉菠菜 200g（橄榄油 5g）</p>
+          <span class="fmt">或按剩余食材替换为黄花鱼/鲫鱼</span></div>
+        <div class="card"><h4>🌙 睡前轻食<span class="tm">21:00</span></h4>
+          <p>牛奶 200ml 或 无糖酸奶 150g（可选）</p></div>
+        <div class="card workout"><h4>🛒 备餐日任务<span class="tm">15:00</span></h4>
+          <ul>
+            <li>煮 6 个蛋；鸡胸/鸡腿/牛肉/鱼按每餐份量分装冷藏或冷冻</li>
+            <li>一次煮好杂粮饭（大米＋糙米＋小米），分 4 份冷藏，3 天内吃完</li>
+            <li>洗切蔬菜：西兰花、菠菜、黄瓜、青椒、胡萝卜按袋分装</li>
+            <li>燕麦、小米按每餐份量装小袋；调一碗姜蒜生抽醋汁</li>
+          </ul>
+          <div class="note">不安排训练，散步即可。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 每日注意事项 ================= -->
+  <h2 class="section">每日注意事项</h2>
+  <div class="notes">
+    <div class="note-card">
+      <h3>😴 睡眠 · 优先级最高</h3>
+      <ul>
+        <li><span class="hl">23:30 前入睡，07:45 固定起床</span>；起床时间比入睡时间更关键</li>
+        <li>周末偏差 ≤ 45 分钟；晨练日起床时间不变，练完再吃早餐</li>
+        <li>睡前 1 小时收手机，卧室全黑、室温 18–21℃</li>
+        <li>晚上 21:00 后不再安排训练，避免影响入睡</li>
+      </ul>
+    </div>
+    <div class="note-card">
+      <h3>💧 喝水 · 2.5–3L / 天</h3>
+      <ul>
+        <li>起床 300–400ml 温水（晨练日前先喝水再练）</li>
+        <li>上午 500–600ml；下午 500–600ml；晚餐前 300ml</li>
+        <li>训练日额外补 <span class="hl">0.7–1L</span>：练前 300ml，练中每 15min 100–150ml，练后 400–500ml</li>
+        <li>判据：<span class="hl">尿液保持淡黄色</span>；深黄就加量</li>
+      </ul>
+    </div>
+    <div class="note-card">
+      <h3>🧍 久坐 · 当纪律执行</h3>
+      <ul>
+        <li>每坐 <span class="hl">45–60 分钟起身活动 3–5 分钟</span></li>
+        <li>每天站立＋走动累计 1.5–2 小时；步数 6,000–9,000 步</li>
+        <li>午饭后走 10–15 分钟；傍晚散步 20 分钟算进步数</li>
+        <li>通勤多走一段路</li>
+      </ul>
+    </div>
+    <div class="note-card">
+      <h3>☀️ 晒太阳 / 见光</h3>
+      <ul>
+        <li>起床后 1 小时内：窗边/阳台 <span class="hl">15–20 分钟</span>，眼睛接触自然光（不戴墨镜）</li>
+        <li>午间 11:00–14:00：前臂＋小腿晒 10–20 分钟，每周 3–5 天（脸防晒）；阴天延长到 30–60 分钟</li>
+        <li>长期日照不足可查一次 25-羟基维D，遵医嘱补</li>
+      </ul>
+    </div>
+    <div class="note-card">
+      <h3>📏 监测与调整</h3>
+      <ul>
+        <li>每周三晨起空腹称重，看 <span class="hl">4 周趋势</span></li>
+        <li>每月量腰围/臀围/胸围/臂围并拍照——围度比体重更能反映增肌减脂</li>
+        <li>连续 2–3 周无变化：主食减 20% 或每日油减 5–10g，<span class="hl">蛋白质不减</span></li>
+        <li>状态变差：练前加 100–150 kcal（多一根香蕉/半个馒头），优先补觉</li>
+      </ul>
+    </div>
+    <div class="note-card">
+      <h3>⚙️ 训练执行规则</h3>
+      <ul>
+        <li>每组做到<span class="hl">还剩 1–2 次力竭</span>就停</li>
+        <li>记录重量次数；能轻松完成上限时下次加重 2.5–5%</li>
+        <li>每 6–8 周安排一周减量周：重量 60–70%、组数减半</li>
+        <li>力量固定午间窗，有氧固定晨间窗，不互相挤占</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ================= 食材替换 ================= -->
+  <h2 class="section no-print">买不到 / 不想吃？直接替换（都是超市常见）</h2>
+  <div class="tips no-print">
+    <div class="tip-card">
+      <h3>🐟 蛋白质互换</h3>
+      <ul>
+        <li>鲈鱼 ↔ 黄花鱼 / 鲫鱼 / 草鱼段（清蒸都行）</li>
+        <li>虾仁 ↔ 鱿鱼 / 蛤蜊 / 猪里脊</li>
+        <li>鸡胸 ↔ 鸡腿（去皮）/ 鸭胸 / 瘦猪肉</li>
+        <li>牛肉 ↔ 牛里脊 / 瘦羊肉</li>
+        <li>北豆腐 ↔ 豆干 / 毛豆 / 黄豆（煮熟）</li>
+      </ul>
+    </div>
+    <div class="tip-card">
+      <h3>🍚 主食互换</h3>
+      <ul>
+        <li>杂粮饭 ↔ 白米饭（其他不变，量少 10g）</li>
+        <li>红薯 ↔ 土豆 / 南瓜 / 山药 / 芋头</li>
+        <li>玉米 ↔ 甜玉米粒（冷冻）/ 荞麦面</li>
+        <li>全麦馒头 ↔ 杂粮馒头 / 花卷 / 白馒头（半个）</li>
+        <li>荞麦面/挂面 ↔ 米粉 / 河粉</li>
+      </ul>
+    </div>
+    <div class="tip-card">
+      <h3>🥬 蔬菜互换</h3>
+      <ul>
+        <li>西兰花 ↔ 花菜 / 荷兰豆</li>
+        <li>菠菜 ↔ 空心菜 / 生菜 / 苋菜</li>
+        <li>菜心/上海青 ↔ 油麦菜 / 大白菜</li>
+        <li>黄瓜 ↔ 白萝卜 / 莴笋（凉拌都行）</li>
+        <li>橄榄油 ↔ 茶籽油 / 菜籽油（凉拌用亚麻籽油更佳）</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ================= 弹性调整 ================= -->
+  <h2 class="section no-print">弹性调整（按你的现实条件选）</h2>
+  <div class="tips no-print">
+    <div class="tip-card">
+      <h3>⏰ 18 点吃不了正餐怎么办</h3>
+      <ul>
+        <li>把 16:30 加餐加大：酸奶 300g ＋ 香蕉 1 根 ＋ 核桃 10g</li>
+        <li>21:00 到家吃「15 分钟快手晚餐」：蒸鱼/煎鸡胸 ＋ 冷冻杂粮饭 ＋ 白灼青菜，油减半</li>
+        <li>原则：睡前 2.5–3 小时吃完最后一口</li>
+      </ul>
+    </div>
+    <div class="tip-card">
+      <h3>🌅 早上起不来、晨练坚持不了</h3>
+      <ul>
+        <li>周三核心 + 周六长有氧可挪到午间窗，与力量日错开</li>
+        <li>或用傍晚窗（18:00–19:00）散步提速 30 分钟代替</li>
+        <li>底线：每周至少 2 次有氧，别连续 7 天全休息</li>
+      </ul>
+    </div>
+    <div class="tip-card">
+      <h3>🍜 外食/点外卖怎么选</h3>
+      <ul>
+        <li>盖浇饭选「鸡腿/鱼/牛肉＋青菜」，米饭只吃一半</li>
+        <li>麻辣烫/清汤火锅：多肉蛋豆制品＋绿叶菜，少丸子少油</li>
+        <li>份量原则：一掌心蛋白 ＋ 一拳主食 ＋ 两拳蔬菜</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <p style="color:var(--accent);font-weight:800">版本 v2（10/8 更新）：晚餐已改为 18:00–19:00 正餐；如果页面上仍看到 21:15，说明看的是旧版缓存，请强制刷新（Cmd/Ctrl+Shift+R）或重新访问本页。</p>
+    <p><b>一次采购（约管 4 天，按 3 天循环 A/B/C 的量）：</b>鸡蛋 12 个 · 鸡胸肉 500g · 去皮鸡腿 500g · 瘦牛肉 450g · 虾仁 400g · 鲈鱼 1 条（约 450g，吃两顿）· 北豆腐 600g · 牛奶 2L · 无糖酸奶 1kg · 豆浆 800ml · 大米/糙米/小米 1kg · 燕麦片 400g · 红薯/土豆/玉米 1.5kg · 挂面/荞麦面 1 包 · 全麦馒头 4 个 · 西兰花 400g · 菠菜 400g · 菜心 500g · 番茄/小番茄 400g · 黄瓜 2 根 · 胡萝卜 2 根 · 青椒/洋葱/西葫芦/木耳/香菇 各 1 份 · 葱姜蒜 · 橄榄油 · 核桃/杏仁 150g · 香蕉 4 根 · 苹果 3 个 · 橙子 3 个。周末补一次鲜鱼鲜蔬即可。</p>
+    <p>预期：12–16 周达到 70kg；前两周体重因储水波动属正常，第三周起看趋势。减太快（每周超过 0.5kg）容易掉肌肉。所有替换遵循「蛋白质不减、主食随体重调整」两条底线。</p>
+  </footer>
+</div>
+</body>
+</html>
